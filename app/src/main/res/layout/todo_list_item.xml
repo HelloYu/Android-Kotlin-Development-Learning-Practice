@@ -22,26 +22,38 @@
   ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   ~ SOFTWARE.
   ~
-  ~ File Name: fragment_todo_list.xml
+  ~ File Name: todo_list_item.xml
   ~ Project: Android-MVVM-Practice
   ~ Module: Android-MVVM-Practice.app
   ~ Author: Alan
   ~ Author URI: https://www.seozen.top
   ~ Email: Mr.Yu1991@gmail.com
   ~ Current Modification Date: 6/25/21 3:58 PM
-  ~ Last Modified Date: 6/25/21 3:55 PM
+  ~ Last Modified Date: 6/25/21 3:56 PM
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TodoListFragment">
+    android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ToDoList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="LinearLayoutManager" />
-</FrameLayout>
+    <TextView
+        android:id="@+id/rv_todo_list_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rv_todo_list_item_remark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="remark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/rv_todo_list_item_title"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

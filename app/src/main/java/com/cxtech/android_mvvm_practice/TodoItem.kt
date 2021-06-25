@@ -21,44 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * File Name: build.gradle
+ * File Name: TodoItem.kt
  * Project: Android-MVVM-Practice
- * Module: Android-MVVM-Practice
+ * Module: Android-MVVM-Practice.app
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
  * Current Modification Date: 6/25/21 3:58 PM
- * Last Modified Date: 6/25/21 2:48 PM
+ * Last Modified Date: 6/25/21 2:58 PM
  */
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    ext.kotlin_version = "1.4.31"
-    ext.nav_version = "2.3.5"
-    ext.lifecycle_version= "2.4.0-alpha02"
+package com.cxtech.android_mvvm_practice
 
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath "com.android.tools.build:gradle:4.1.2"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+data class TodoItem(val title:String , val remark:String) {
 
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
