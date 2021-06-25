@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="MainActivity" pattern="src[Android-MVVM-Practice.app]:com.cxtech.android_mvvm_practice.MainActivity" />
+</component>

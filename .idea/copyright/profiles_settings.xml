@@ -1,7 +1,7 @@
 <component name="CopyrightManager">
   <settings default="Alan">
     <module2copyright>
-      <element module="Project Files" copyright="Alan" />
+      <element module="MainActivity" copyright="Alan" />
     </module2copyright>
   </settings>
 </component>
