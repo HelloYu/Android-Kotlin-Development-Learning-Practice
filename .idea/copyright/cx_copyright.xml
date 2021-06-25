@@ -1,6 +1,6 @@
 <component name="CopyrightManager">
   <copyright>
-    <option name="notice" value="Copyright (c) &amp;#36;today.year. XiaMen ChuanXiang Information Technology Co.,Ltd. All rights reserved." />
+    <option name="notice" value="Copyright (c) &amp;#36;today.year. XiaMen ChuanXiang Information Technology Co.,Ltd. All rights reserved.&#10;&#10;File Name: &amp;#36;file.fileName&#10;Project: &amp;#36;project.name&#10;Module: &amp;#36;module.name&#10;Author: Alan&#10;Author URI: https://www.seozen.top&#10;Email: Mr.Yu1991@gmail.com&#10;Current Modification Date: &amp;#36;today&#10;Last Modified Date: &amp;#36;file.lastModified" />
     <option name="myName" value="cx_copyright" />
   </copyright>
 </component>
