@@ -27,8 +27,8 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/25/21 3:58 PM
- * Last Modified Date: 6/25/21 2:47 PM
+ * Current Modification Date: 6/25/21 8:21 PM
+ * Last Modified Date: 6/25/21 8:00 PM
  */
 
 plugins {
@@ -38,6 +38,10 @@ plugins {
 }
 
 android {
+
+    buildFeatures {
+        dataBinding true
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 

@@ -28,16 +28,23 @@
   ~ Author: Alan
   ~ Author URI: https://www.seozen.top
   ~ Email: Mr.Yu1991@gmail.com
-  ~ Current Modification Date: 6/25/21 2:21 PM
-  ~ Last Modified Date: 6/25/21 2:05 PM
+  ~ Current Modification Date: 6/25/21 8:21 PM
+  ~ Last Modified Date: 6/25/21 8:12 PM
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CreateEditFragment">
+    >
+
+    <data>
+
+        <variable
+                name="todoItem"
+                type="com.cxtech.android_mvvm_practice.TodoItem" />
+
+
+    </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:ems="10"
+            android:text="@{todoItem.title}"
             android:hint="input titile"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,6 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
+             android:text="@{todoItem.remark}"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
@@ -101,4 +110,4 @@
             app:layout_constraintTop_toBottomOf="@+id/et_todo_create_edit_remark" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</layout>

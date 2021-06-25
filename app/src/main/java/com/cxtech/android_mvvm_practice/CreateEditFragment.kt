@@ -27,8 +27,8 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/25/21 3:58 PM
- * Last Modified Date: 6/25/21 3:39 PM
+ * Current Modification Date: 6/25/21 8:21 PM
+ * Last Modified Date: 6/25/21 8:10 PM
  */
 
 package com.cxtech.android_mvvm_practice
@@ -38,7 +38,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import com.cxtech.android_mvvm_practice.databinding.FragmentCreateEditBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -48,22 +50,28 @@ import androidx.fragment.app.viewModels
 class CreateEditFragment : Fragment() {
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_edit, container, false)
+
+        val binding = FragmentCreateEditBinding . inflate (inflater, container, false)
+        context ?: return binding.root
+
+        binding.todoItem = TodoItem("new", "mark")
+
+        return binding.root
     }
 
     companion object {
