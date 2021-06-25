@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. XiaMen ChuanXiang Information Technology Co.,Ltd. All rights reserved.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/setting"
+        android:title="setting" />
+    <item
+        android:id="@+id/about"
+        android:title="about" />
+</menu>

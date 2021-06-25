@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/todoListFragment">
+
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.cxtech.android_mvvm_practice.TodoListFragment"
+        android:label="fragment_todo_list"
+        tools:layout="@layout/fragment_todo_list" >
+        <action
+            android:id="@+id/action_todoListFragment_to_createEditFragment"
+            app:destination="@id/createEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createEditFragment"
+        android:name="com.cxtech.android_mvvm_practice.CreateEditFragment"
+        android:label="fragment_create_edit"
+        tools:layout="@layout/fragment_create_edit" >
+        <action
+            android:id="@+id/action_createEditFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/about"
+        android:name="com.cxtech.android_mvvm_practice.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/setting"
+        android:name="com.cxtech.android_mvvm_practice.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+</navigation>
