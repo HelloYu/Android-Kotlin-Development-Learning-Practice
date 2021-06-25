@@ -27,8 +27,8 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/25/21 3:58 PM
- * Last Modified Date: 6/25/21 3:45 PM
+ * Current Modification Date: 6/25/21 7:23 PM
+ * Last Modified Date: 6/25/21 5:00 PM
  */
 
 package com.cxtech.android_mvvm_practice
@@ -48,12 +48,15 @@ class TodoListViewModel : ViewModel() {
         return todoList
     }
 
-    fun loadTodoList(): List<TodoItem> {
-        return listOf<TodoItem>(
-            TodoItem("TODO1", "remark1"),
-            TodoItem("TODO2", "remark2"),
-            TodoItem("TODO3", "remark3"),
-            TodoItem("TODO4", "remark4"),
-        )
+    fun loadTodoList(): ArrayList<TodoItem> {
+
+        var result: ArrayList<TodoItem> = ArrayList<TodoItem>()
+        var i: Int = 0;
+
+        while (i < 100) {
+            result.add(TodoItem("TODO$i","remark$i"))
+            i++
+        }
+        return result
     }
 }

@@ -27,8 +27,8 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/25/21 3:58 PM
- * Last Modified Date: 6/25/21 3:51 PM
+ * Current Modification Date: 6/25/21 7:23 PM
+ * Last Modified Date: 6/25/21 4:54 PM
  */
 
 package com.cxtech.android_mvvm_practice
@@ -39,7 +39,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RVTodoListAdapter(private val dataSet: List<TodoItem>) : RecyclerView.Adapter<RVTodoListAdapter.ViewHolder>() {
+class RVTodoListAdapter(private val dataSet: ArrayList<TodoItem>) : RecyclerView.Adapter<RVTodoListAdapter.ViewHolder>() {
 
     /**
      * Provide a reference to the type of views that you are using
