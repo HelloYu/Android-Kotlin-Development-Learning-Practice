@@ -28,32 +28,44 @@
   ~ Author: Alan
   ~ Author URI: https://www.seozen.top
   ~ Email: Mr.Yu1991@gmail.com
-  ~ Current Modification Date: 6/25/21 3:58 PM
-  ~ Last Modified Date: 6/25/21 3:56 PM
+  ~ Current Modification Date: 6/26/21 9:15 PM
+  ~ Last Modified Date: 6/26/21 6:33 PM
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/rv_todo_list_item_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+         <variable
+                name="todoItem"
+                type="com.cxtech.android_mvvm_practice.TodoItem" />
 
-    <TextView
-        android:id="@+id/rv_todo_list_item_remark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="remark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/rv_todo_list_item_title"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/rv_todo_list_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="title"
+            android:text="@{todoItem.title}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/rv_todo_list_item_remark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="remark"
+            android:text="@{todoItem.remark}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rv_todo_list_item_title"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

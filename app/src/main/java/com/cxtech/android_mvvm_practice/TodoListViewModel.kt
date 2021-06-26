@@ -27,36 +27,41 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/25/21 7:23 PM
- * Last Modified Date: 6/25/21 5:00 PM
+ * Current Modification Date: 6/26/21 9:15 PM
+ * Last Modified Date: 6/26/21 9:00 PM
  */
 
 package com.cxtech.android_mvvm_practice
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 
 class TodoListViewModel : ViewModel() {
-    private val todoList: MutableLiveData<List<TodoItem>> by lazy {
-        MutableLiveData<List<TodoItem>>().also {
-            loadTodoList()
-        }
+
+    private  val list = loadTodoList()
+    private val _todoList: MutableLiveData<List<TodoItem>> by lazy {
+        MutableLiveData<List<TodoItem>>(list)
+
+
     }
 
-    fun getTodoList(): LiveData<List<TodoItem>> {
-        return todoList
-    }
+    val todoList: LiveData<List<TodoItem>>
+        get() =_todoList
 
-    fun loadTodoList(): ArrayList<TodoItem> {
+
+    fun loadTodoList(): List<TodoItem> {
 
         var result: ArrayList<TodoItem> = ArrayList<TodoItem>()
         var i: Int = 0;
 
-        while (i < 100) {
-            result.add(TodoItem("TODO$i","remark$i"))
+        while (i < 10000) {
+            result.add(TodoItem("TODO$i", "remark$i"))
             i++
         }
-        return result
+
+        return result.toList()
     }
 }

@@ -27,19 +27,22 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/25/21 3:58 PM
- * Last Modified Date: 6/25/21 3:46 PM
+ * Current Modification Date: 6/26/21 9:15 PM
+ * Last Modified Date: 6/26/21 8:38 PM
  */
 
 package com.cxtech.android_mvvm_practice
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.cxtech.android_mvvm_practice.databinding.FragmentTodoListBinding
 
 
 /**
@@ -49,24 +52,35 @@ import androidx.recyclerview.widget.RecyclerView
  */
 class TodoListFragment : Fragment() {
     private val viewModel: TodoListViewModel by viewModels()
-
+    private lateinit var binding: FragmentTodoListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val recyclerView: RecyclerView = view.findViewById(R.id.ToDoList)
-        val todoListItemAdapter = RVTodoListAdapter(viewModel.loadTodoList())
-        recyclerView.adapter = todoListItemAdapter
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        binding = FragmentTodoListBinding.inflate(inflater, container, false)
+        val adapter = RVTodoListAdapter()
+        binding.rvTodoList.adapter = adapter
+        Log.d("todoList",viewModel.todoList.value.toString())
+          adapter.submitList(viewModel.todoList.value)
+        subscribeUi(adapter)
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_todo_list, container, false)
+        return binding.root
+    }
+
+    private fun subscribeUi(adapter: RVTodoListAdapter) {
+        Log.d("todoList", "33")
+        viewModel.todoList.observe(viewLifecycleOwner, Observer {
+           Log.d("todoList", "44")
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
     }
 
     companion object {

@@ -27,53 +27,67 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/25/21 7:23 PM
- * Last Modified Date: 6/25/21 4:54 PM
+ * Current Modification Date: 6/26/21 9:15 PM
+ * Last Modified Date: 6/26/21 8:34 PM
  */
 
 package com.cxtech.android_mvvm_practice
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.cxtech.android_mvvm_practice.databinding.TodoListItemBinding
 
-class RVTodoListAdapter(private val dataSet: ArrayList<TodoItem>) : RecyclerView.Adapter<RVTodoListAdapter.ViewHolder>() {
+class RVTodoListAdapter : ListAdapter<TodoItem, RVTodoListAdapter.ViewHolder>(TodoDiffCallback()) {
 
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val title: TextView
-        val remark: TextView
 
-        init {
-            // Define click listener for the ViewHolder's View.
-            title = view.findViewById(R.id.rv_todo_list_item_title)
-            remark = view.findViewById(R.id.rv_todo_list_item_remark)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
+
+    class ViewHolder(
+        private val binding: TodoListItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+
+        fun bind(item: TodoItem) {
+            with(binding) {
+                todoItem = item
+                executePendingBindings()
+            }
         }
     }
 
-    // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.todo_list_item, viewGroup, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.todo_list_item,
+                parent,
+                false
+            )
+        )
+    }
+}
 
-        return ViewHolder(view)
+private class TodoDiffCallback : DiffUtil.ItemCallback<TodoItem>() {
+
+    override fun areItemsTheSame(oldItem: TodoItem, newItem: TodoItem): Boolean {
+        Log.d("todoList","3344")
+        return oldItem.title == newItem.title
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        viewHolder.title.text = dataSet[position].title.toString()
-        viewHolder.remark.text = dataSet[position].remark.toString()
+    override fun areContentsTheSame(oldItem: TodoItem, newItem: TodoItem): Boolean {
+        return oldItem == newItem
     }
-
-    // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet.size
 }
