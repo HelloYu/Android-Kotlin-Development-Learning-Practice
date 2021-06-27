@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * File Name: TodoListViewModel.kt
+ * File Name: TodoListDao.kt
  * Project: Android-MVVM-Practice
  * Module: Android-MVVM-Practice.app
  * Author: Alan
@@ -34,28 +34,22 @@
 package com.cxtech.android_mvvm_practice
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import androidx.room.*
 
-@HiltViewModel
-class TodoListViewModel @Inject constructor(
-    private val todoDao: TodoListDao
-) : ViewModel() {
+@Dao
+interface TodoListDao {
+    @Query("SELECT * FROM todo_list")
+    fun getAll(): LiveData<List<TodoItemEntity>>
 
-    private val list = loadTodoList()
+    @Query("SELECT * FROM todo_list WHERE title IN (:title)")
+    fun loadAllByTitles(title: List<String>): LiveData<List<TodoItemEntity>>
 
+    @Insert
+    suspend fun insert(todoItemEntity: TodoItemEntity)
 
-    val todoListEntity: LiveData<List<TodoItemEntity>>
-        get() = list
+    @Delete
+    fun delete(todoItemEntity: TodoItemEntity)
 
-
-    fun loadTodoList(): LiveData<List<TodoItemEntity>> {
-
-
-
-        return todoDao.getAll()
-    }
-
-
+    @Update
+    fun update(todoItemEntity: TodoItemEntity)
 }

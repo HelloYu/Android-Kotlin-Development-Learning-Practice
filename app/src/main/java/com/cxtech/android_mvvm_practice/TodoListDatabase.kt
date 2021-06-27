@@ -21,18 +21,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * File Name: TodoItem.kt
+ * File Name: TodoListDatabase.kt
  * Project: Android-MVVM-Practice
  * Module: Android-MVVM-Practice.app
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/25/21 3:58 PM
- * Last Modified Date: 6/25/21 2:58 PM
+ * Current Modification Date: 6/27/21 10:11 PM
+ * Last Modified Date: 6/27/21 7:18 PM
  */
 
 package com.cxtech.android_mvvm_practice
 
-data class TodoItem(val title:String , val remark:String) {
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 
+@Database(entities = [ TodoItemEntity::class], version = 1, exportSchema = false)
+abstract class TodoListDatabase : RoomDatabase() {
+    abstract fun todoDao(): TodoListDao
+
+    companion object {
+
+        // For Singleton instantiation
+        @Volatile
+        private var instance: TodoListDatabase? = null
+
+        fun getInstance(context: Context): TodoListDatabase {
+            return instance ?: synchronized(this) {
+                instance ?: buildDatabase(context).also { instance = it }
+            }
+        }
+
+        private fun buildDatabase(context: Context): TodoListDatabase {
+            return Room.databaseBuilder(
+                context,
+                TodoListDatabase::class.java,
+                "todo-db"
+            ).build()
+        }
+    }
 }

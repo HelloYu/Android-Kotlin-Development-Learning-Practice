@@ -27,8 +27,8 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/26/21 9:15 PM
- * Last Modified Date: 6/26/21 8:38 PM
+ * Current Modification Date: 6/27/21 10:11 PM
+ * Last Modified Date: 6/27/21 7:18 PM
  */
 
 package com.cxtech.android_mvvm_practice
@@ -41,8 +41,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.cxtech.android_mvvm_practice.databinding.FragmentTodoListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
@@ -50,6 +50,7 @@ import com.cxtech.android_mvvm_practice.databinding.FragmentTodoListBinding
  * Use the [TodoListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class TodoListFragment : Fragment() {
     private val viewModel: TodoListViewModel by viewModels()
     private lateinit var binding: FragmentTodoListBinding
@@ -65,8 +66,8 @@ class TodoListFragment : Fragment() {
         binding = FragmentTodoListBinding.inflate(inflater, container, false)
         val adapter = RVTodoListAdapter()
         binding.rvTodoList.adapter = adapter
-        Log.d("todoList",viewModel.todoList.value.toString())
-          adapter.submitList(viewModel.todoList.value)
+
+        adapter.submitList(viewModel.todoListEntity.value)
         subscribeUi(adapter)
 
         // Inflate the layout for this fragment
@@ -75,8 +76,8 @@ class TodoListFragment : Fragment() {
 
     private fun subscribeUi(adapter: RVTodoListAdapter) {
         Log.d("todoList", "33")
-        viewModel.todoList.observe(viewLifecycleOwner, Observer {
-           Log.d("todoList", "44")
+        viewModel.todoListEntity.observe(viewLifecycleOwner, Observer {
+            Log.d("todoList", "44")
             it?.let {
                 adapter.submitList(it)
             }

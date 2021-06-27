@@ -27,37 +27,42 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/25/21 8:21 PM
- * Last Modified Date: 6/25/21 8:10 PM
+ * Current Modification Date: 6/27/21 10:11 PM
+ * Last Modified Date: 6/27/21 7:20 PM
  */
 
 package com.cxtech.android_mvvm_practice
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.cxtech.android_mvvm_practice.databinding.FragmentCreateEditBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass.
  * Use the [CreateEditFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class CreateEditFragment : Fragment() {
 
+
+     private val viewModel: CreateEditViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
     }
 
@@ -66,22 +71,16 @@ class CreateEditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentCreateEditBinding . inflate (inflater, container, false)
+        val binding = FragmentCreateEditBinding.inflate(inflater, container, false)
         context ?: return binding.root
+        binding.lifecycleOwner = this
 
-        binding.todoItem = TodoItem("new", "mark")
+        binding.viewModel = viewModel
+        binding.btnAddItem.setOnClickListener {
+            viewModel.addTodoItem(viewModel.todoItem)
+        }
 
         return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         * @return A new instance of fragment CreateEditFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() = CreateEditFragment()
-    }
 }

@@ -21,41 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * File Name: TodoListViewModel.kt
+ * File Name: MainApplication.kt
  * Project: Android-MVVM-Practice
  * Module: Android-MVVM-Practice.app
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
  * Current Modification Date: 6/27/21 10:11 PM
- * Last Modified Date: 6/27/21 7:18 PM
+ * Last Modified Date: 6/27/21 11:14 AM
  */
 
 package com.cxtech.android_mvvm_practice
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-@HiltViewModel
-class TodoListViewModel @Inject constructor(
-    private val todoDao: TodoListDao
-) : ViewModel() {
-
-    private val list = loadTodoList()
-
-
-    val todoListEntity: LiveData<List<TodoItemEntity>>
-        get() = list
-
-
-    fun loadTodoList(): LiveData<List<TodoItemEntity>> {
-
-
-
-        return todoDao.getAll()
-    }
-
-
+@HiltAndroidApp
+class MainApplication:Application() {
 }

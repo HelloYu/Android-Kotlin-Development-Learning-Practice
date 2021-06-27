@@ -21,41 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * File Name: TodoListViewModel.kt
+ * File Name: CreateEditViewModel.kt
  * Project: Android-MVVM-Practice
  * Module: Android-MVVM-Practice.app
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
  * Current Modification Date: 6/27/21 10:11 PM
- * Last Modified Date: 6/27/21 7:18 PM
+ * Last Modified Date: 6/27/21 7:20 PM
  */
 
 package com.cxtech.android_mvvm_practice
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TodoListViewModel @Inject constructor(
+class CreateEditViewModel @Inject constructor(
     private val todoDao: TodoListDao
 ) : ViewModel() {
 
-    private val list = loadTodoList()
+
+    var todoItem = TodoItemModel("2","1")
 
 
-    val todoListEntity: LiveData<List<TodoItemEntity>>
-        get() = list
+    var todoItemRemark = MutableLiveData<String>()
 
-
-    fun loadTodoList(): LiveData<List<TodoItemEntity>> {
-
-
-
-        return todoDao.getAll()
+    fun addTodoItem(item: TodoItemModel) {
+        val todoItem = TodoItemEntity(item.title,item.remark)
+         viewModelScope.launch {
+             todoDao.insert(todoItem)
+         }
     }
-
-
 }

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * File Name: TodoListViewModel.kt
+ * File Name: TodoItemModel.kt
  * Project: Android-MVVM-Practice
  * Module: Android-MVVM-Practice.app
  * Author: Alan
@@ -32,30 +32,8 @@
  */
 
 package com.cxtech.android_mvvm_practice
+ class TodoItemModel(title:String, remark:String) {
+     var title = title
+     var remark = remark
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
-
-@HiltViewModel
-class TodoListViewModel @Inject constructor(
-    private val todoDao: TodoListDao
-) : ViewModel() {
-
-    private val list = loadTodoList()
-
-
-    val todoListEntity: LiveData<List<TodoItemEntity>>
-        get() = list
-
-
-    fun loadTodoList(): LiveData<List<TodoItemEntity>> {
-
-
-
-        return todoDao.getAll()
-    }
-
-
-}
+ }

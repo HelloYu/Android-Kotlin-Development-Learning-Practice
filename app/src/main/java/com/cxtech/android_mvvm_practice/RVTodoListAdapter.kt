@@ -27,24 +27,22 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/26/21 9:15 PM
- * Last Modified Date: 6/26/21 8:34 PM
+ * Current Modification Date: 6/27/21 10:11 PM
+ * Last Modified Date: 6/27/21 7:18 PM
  */
 
 package com.cxtech.android_mvvm_practice
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.cxtech.android_mvvm_practice.databinding.TodoListItemBinding
 
-class RVTodoListAdapter : ListAdapter<TodoItem, RVTodoListAdapter.ViewHolder>(TodoDiffCallback()) {
+class RVTodoListAdapter : ListAdapter<TodoItemEntity, RVTodoListAdapter.ViewHolder>(TodoDiffCallback()) {
 
     /**
      * Provide a reference to the type of views that you are using
@@ -60,9 +58,9 @@ class RVTodoListAdapter : ListAdapter<TodoItem, RVTodoListAdapter.ViewHolder>(To
     ) : RecyclerView.ViewHolder(binding.root) {
 
 
-        fun bind(item: TodoItem) {
+        fun bind(itemEntity: TodoItemEntity) {
             with(binding) {
-                todoItem = item
+                todoItem = itemEntity
                 executePendingBindings()
             }
         }
@@ -80,14 +78,14 @@ class RVTodoListAdapter : ListAdapter<TodoItem, RVTodoListAdapter.ViewHolder>(To
     }
 }
 
-private class TodoDiffCallback : DiffUtil.ItemCallback<TodoItem>() {
+private class TodoDiffCallback : DiffUtil.ItemCallback<TodoItemEntity>() {
 
-    override fun areItemsTheSame(oldItem: TodoItem, newItem: TodoItem): Boolean {
+    override fun areItemsTheSame(oldItemEntity: TodoItemEntity, newItemEntity: TodoItemEntity): Boolean {
         Log.d("todoList","3344")
-        return oldItem.title == newItem.title
+        return oldItemEntity.title == newItemEntity.title
     }
 
-    override fun areContentsTheSame(oldItem: TodoItem, newItem: TodoItem): Boolean {
-        return oldItem == newItem
+    override fun areContentsTheSame(oldItemEntity: TodoItemEntity, newItemEntity: TodoItemEntity): Boolean {
+        return oldItemEntity == newItemEntity
     }
 }

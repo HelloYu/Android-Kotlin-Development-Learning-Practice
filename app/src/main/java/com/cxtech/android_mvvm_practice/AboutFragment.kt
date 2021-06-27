@@ -27,8 +27,8 @@
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
- * Current Modification Date: 6/25/21 2:19 PM
- * Last Modified Date: 6/25/21 1:01 PM
+ * Current Modification Date: 6/27/21 10:11 PM
+ * Last Modified Date: 6/27/21 12:06 PM
  */
 
 package com.cxtech.android_mvvm_practice
@@ -38,6 +38,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,6 +50,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [AboutFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class AboutFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null

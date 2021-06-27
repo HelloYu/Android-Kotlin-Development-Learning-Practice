@@ -21,41 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * File Name: TodoListViewModel.kt
+ * File Name: DatabaseModule.kt
  * Project: Android-MVVM-Practice
  * Module: Android-MVVM-Practice.app
  * Author: Alan
  * Author URI: https://www.seozen.top
  * Email: Mr.Yu1991@gmail.com
  * Current Modification Date: 6/27/21 10:11 PM
- * Last Modified Date: 6/27/21 7:18 PM
+ * Last Modified Date: 6/27/21 11:59 AM
  */
 
 package com.cxtech.android_mvvm_practice
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import android.content.Context
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-@HiltViewModel
-class TodoListViewModel @Inject constructor(
-    private val todoDao: TodoListDao
-) : ViewModel() {
+@InstallIn(SingletonComponent::class)
+@Module
+class DatabaseModule {
 
-    private val list = loadTodoList()
-
-
-    val todoListEntity: LiveData<List<TodoItemEntity>>
-        get() = list
-
-
-    fun loadTodoList(): LiveData<List<TodoItemEntity>> {
-
-
-
-        return todoDao.getAll()
+    @Singleton
+    @Provides
+    fun provideTodoListDatabase(@ApplicationContext context: Context): TodoListDatabase {
+        return TodoListDatabase.getInstance(context)
     }
 
-
+    @Provides
+    fun provideTodoDao(appDatabase: TodoListDatabase): TodoListDao {
+        return appDatabase.todoDao()
+    }
 }

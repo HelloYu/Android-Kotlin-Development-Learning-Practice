@@ -28,8 +28,8 @@
   ~ Author: Alan
   ~ Author URI: https://www.seozen.top
   ~ Email: Mr.Yu1991@gmail.com
-  ~ Current Modification Date: 6/26/21 9:15 PM
-  ~ Last Modified Date: 6/26/21 6:33 PM
+  ~ Current Modification Date: 6/27/21 10:11 PM
+  ~ Last Modified Date: 6/27/21 7:36 PM
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,7 +39,7 @@
     <data>
          <variable
                 name="todoItem"
-                type="com.cxtech.android_mvvm_practice.TodoItem" />
+                type="com.cxtech.android_mvvm_practice.TodoItemEntity" />
 
     </data>
 

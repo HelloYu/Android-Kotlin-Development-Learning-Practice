@@ -28,8 +28,8 @@
   ~ Author: Alan
   ~ Author URI: https://www.seozen.top
   ~ Email: Mr.Yu1991@gmail.com
-  ~ Current Modification Date: 6/25/21 8:21 PM
-  ~ Last Modified Date: 6/25/21 8:12 PM
+  ~ Current Modification Date: 6/27/21 10:11 PM
+  ~ Last Modified Date: 6/27/21 3:57 PM
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -40,8 +40,8 @@
     <data>
 
         <variable
-                name="todoItem"
-                type="com.cxtech.android_mvvm_practice.TodoItem" />
+                name="viewModel"
+                type="com.cxtech.android_mvvm_practice.CreateEditViewModel" />
 
 
     </data>
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:ems="10"
-            android:text="@{todoItem.title}"
+            android:text="@={viewModel.todoItem.title}"
             android:hint="input titile"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
-             android:text="@{todoItem.remark}"
+             android:text="@={viewModel.todoItem.remark}"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
